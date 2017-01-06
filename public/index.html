@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>
+        jimmy!
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="Controller">
+<div>
+    <table class="table table-striped" style="width: 80%">
+        <tr>
+            <th ng-repeat="x in heads">{{x}}</th>
+        </tr>
+        <tr ng-repeat="y in mems">
+            <td>
+                {{y._id}}
+            </td>
+            <td>
+                {{y.name}}
+            </td>
+            <td>
+                {{y.username}}
+            </td>
+            <td>
+                {{y.password}}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller('Controller', ['$scope', "$http", function ($scope, $http)
+    {
+        $http.get("api/allusers").then(function (response)
+        {
+            console.log(response.data[1]);
+            $scope.mems = [];
+            $scope.mems = response.data;
+            delete $scope.mems[1].__v;
+            $scope.heads = Object.keys($scope.mems[1]);
+            console.log($scope.heads);
+
+        });
+    }]);
+
+</script>
+
+</body>
+
+</html>

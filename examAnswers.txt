@@ -1,0 +1,74 @@
+PART A:
+
+Explain generally, what is meant by a NoSQL database.)
+
+    Enhver ikke relationel database, kan i essensen betragtes som en NoSQL db. Det vil sige opbevares din data ikke i tabeller, så er det en NoSQL.
+
+Explain Pros & Cons in using a NoSQL database like MongoDB as your data store,
+compared to a traditional Relational SQL Database like MySQL.)
+
+    Den største fordel er at NoSQL er virkeligt nemt at skalere. Derudover passer nogen datasæt meget bedre, på en NoSQL end i en SQL.
+    Du kan også bruge straight JSON, hvilket måske er smart i en web applikation.
+
+Explain how databases like MongoDB and redis would be classified in the NoSQL world)
+
+
+    Der er flere slags NoSQL dbs, blandt andet:
+        Key-value
+            Her passer Redis ind. Key-value dbs fungerer essentielt som maps, hvor hver værdi (kan være en skalar værdi eller en JSON struktur or w/e).
+            De er hurtige men lidt "simple"
+
+        document
+            Her passer MongoDB ind. Document dbs fungere på en måde ligesom key-value, men den er beregnet til at have hele objekter inde i sig.
+            Et document i denne kontekst er pretty much bare en repræsentation af et objekt.
+        column
+            Fungere på følgende måde:
+            i relationel:
+            SNO  STATUS CITY    SNAME
+            ---  ------ ----    -----
+            S1       20 London  Smith
+            S2       10 Paris   Jones
+            S3       30 Paris   Blake
+            S4       20 London  Clark
+            S5       30 Athens  Adams
+
+            eller S120LondonSmith;S210ParisJones;S330ParisBlake;S420LondonClark;S530AthensAdams
+            i Column:
+            S1S2S3S4S5;2010302030;LondonParisParisLondonAthens;SmithJonesBlakeClarkAdams
+        graph
+            De er lidt ligesom relational, forskellen er at i relational bliver relationer gemt sammen med dataen (som foreign keys), mens i graph er relationerne
+            deres egne.
+
+
+Explain reasons to add a layer like Mongoose, on top on of a schema-less database
+like MongoDB)
+
+    Med mongoose kan man få alt det gode ved en NoSQL DB, mens man genfinder en grad af kontrol over hvilket data der skal puttes i. Det kan også være nemmere hvis man er vant til SQL dbs.
+    Der er type sikkerhed, derudover.
+
+Explain the benefits from using Mongoose, and demonstrate, using your own
+code, an example involving all CRUD operations)
+
+    se model for schema, facade for CRUD og app for brug af CRUD.
+
+Explain, using a relevant example, a full MEAN application (the A, can be an ionic
+application) including relevant test cases to test the REST-API (not on the production
+database))
+
+
+B:
+
+Explain about indexes in MongoDB, how to create them, and demonstrate how you
+have used them)
+
+    Indexes tillader brugeren af mongo, at skabe en form for sortering i dataen. Uden indexes skal mongo gennemse ALT data for hver query.
+    Med f.eks en nummerering af IDs.
+
+Explain how redis "fits" into the NoSQL world, and provide an example of how you
+have used it.)
+
+    Redis er en key-value store og er derfor den absolut hurtigste måde at lave lookups på.
+    Når mongo laver Ids bliver de ofte til "586fc0d41dd98127ac4cfe7b" eller lign.
+    Derfor har jeg lavet en keyvalue store der giver alle mine users et rationelt id (fra 1 og op), og kæder det sammen med mongo idet.
+    Lidt et tænkt eksempel, but hey.
+
